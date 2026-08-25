@@ -31,5 +31,5 @@ This repository houses the source code for my personal portfolio website. Built 
 ## 📬 Connect & Contact
 
 * **Portfolio:** [https://tshepo-letsoalo.github.io/Academic-Portfolio/](https://tshepo-letsoalo.github.io/Academic-Portfolio/)
-* **LinkedIn:** [Tshepo Eugene Letsoalo](https://www.linkedin.com/in/tshepo-letsoalo-45bbb7293/)
+* **LinkedIn:** https://www.linkedin.com/in/tshepo-letsoalo-45bb67377
 * **Email:** tshepo.eugene.letsoalo@gmail.com
