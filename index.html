@@ -64,29 +64,6 @@
                 <a href="https://wa.me/27607521998" target="_blank" class="btn-secondary">💬 Chat on WhatsApp</a>
             </div>
         </div>
-        
-        <!-- TERMINAL BOX -->
-        <div class="terminal-box">
-            <div class="terminal-header">
-                <div class="terminal-dots">
-                    <span class="dot red"></span>
-                    <span class="dot yellow"></span>
-                    <span class="dot green"></span>
-                </div>
-                <div class="folder-icon">📁</div>
-                <span class="terminal-title">tshepo@lab — zsh — 80x24</span>
-                <span class="terminal-version">v2.0.0</span>
-            </div>
-            <div class="terminal-body">
-                <p class="term-welcome">Welcome to TshepoInCode Terminal v2.0.0</p>
-                <p class="term-hint">Type 'help' to see available commands.</p>
-                <br>
-                <p class="term-prompt-line">
-                    <span class="term-user">tshepo</span> <span class="term-at">@</span> <span class="term-host">TshepoInCodeLand</span> <span class="term-tilde">~</span> <span class="term-percent">%</span> 
-                    <span id="terminal-typing-text"></span><span class="term-cursor"></span>
-                </p>
-            </div>
-        </div>
     </header>
 
     <!-- PHILOSOPHY / TRANSITION -->
@@ -337,40 +314,6 @@
         }
 
         setTimeout(typeWriter, 1000);
-
-        // Terminal Command Typewriter Effect
-        const termCommands = ["help", "projects", "status", "contact", "clear"];
-        let cmdIndex = 0;
-        let termCharIndex = 0;
-        let isTermDeleting = false;
-        const termElement = document.getElementById("terminal-typing-text");
-
-        function typeTerminal() {
-            const currentCmd = "type '" + termCommands[cmdIndex] + "'...";
-
-            if (isTermDeleting) {
-                termElement.textContent = currentCmd.substring(0, termCharIndex - 1);
-                termCharIndex--;
-                if (termCharIndex === 0) {
-                    isTermDeleting = false;
-                    cmdIndex = (cmdIndex + 1) % termCommands.length;
-                    setTimeout(typeTerminal, 500);
-                    return;
-                }
-                setTimeout(typeTerminal, 50);
-            } else {
-                termElement.textContent = currentCmd.substring(0, termCharIndex + 1);
-                termCharIndex++;
-                if (termCharIndex === currentCmd.length) {
-                    isTermDeleting = true;
-                    setTimeout(typeTerminal, 1500); 
-                    return;
-                }
-                setTimeout(typeTerminal, 100);
-            }
-        }
-
-        setTimeout(typeTerminal, 1200);
     </script>
 </body>
 </html>
