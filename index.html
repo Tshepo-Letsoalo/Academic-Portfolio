@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="TshepoInCodeLand">
+    <meta name="theme-color" content="#05080b">
     <meta name="description" content="Tshepo Eugene Letsoalo - Software Engineering Student & Cybersecurity Analyst Academic Portfolio">
     <title>TshepoInCodeLand | Academic Portfolio</title>
     <link rel="icon" type="image/png" href="favicon.png">
@@ -11,10 +15,40 @@
 </head>
 <body>
 
-    <!-- GALAXY BACKGROUND CANVAS -->
-    <canvas id="galaxy-canvas"></canvas>
+    <!-- COSMIC GALAXY CANVAS -->
+    <canvas id="galaxy-canvas" aria-hidden="true"></canvas>
 
-    <!-- TOP NAVIGATION BAR -->
+    <!-- MOBILE APP HEADER -->
+    <header class="mobile-app-header">
+        <div class="mobile-header-left">
+            <span class="mobile-avatar">TL</span>
+            <div>
+                <span class="mobile-app-title">TshepoInCodeLand</span>
+                <span class="mobile-app-subtitle">v2.6 • Secure Shell</span>
+            </div>
+        </div>
+        <div class="mobile-header-right">
+            <button class="mobile-action-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="Home">🏠</button>
+            <button class="mobile-action-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <!-- MOBILE NAV DRAWER -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <span>Navigation Menu</span>
+            <button onclick="toggleMobileMenu()" class="close-drawer">✕</button>
+        </div>
+        <div class="drawer-links">
+            <a href="#" onclick="toggleMobileMenu()">🏠 Home Dashboard</a>
+            <a href="#projects" onclick="toggleMobileMenu()">🚀 Technical Projects</a>
+            <a href="#stack" onclick="toggleMobileMenu()">⚡ Technical Stack</a>
+            <a href="#experience" onclick="toggleMobileMenu()">🎓 Experience & Education</a>
+            <a href="#connect" onclick="toggleMobileMenu()">📬 Get in Touch</a>
+        </div>
+    </div>
+
+    <!-- TOP NAVIGATION BAR (Desktop) -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-left">
@@ -133,7 +167,7 @@
     </section>
 
     <!-- TECHNICAL STACK -->
-    <section class="section">
+    <section id="stack" class="section">
         <h2>Technical Stack</h2>
         <p class="section-desc">Languages, frameworks, and developer toolsets utilized daily.</p>
 
@@ -166,7 +200,7 @@
     </section>
 
     <!-- EXPERIENCE & EDUCATION TIMELINE -->
-    <section class="section">
+    <section id="experience" class="section">
         <h2>Experience & Education</h2>
         <p class="section-desc">Academic milestones and industry-recognized certifications.</p>
 
@@ -263,6 +297,26 @@
         </div>
     </section>
 
+    <!-- MOBILE APP BOTTOM NAVIGATION BAR -->
+    <nav class="mobile-bottom-nav">
+        <a href="#" class="mobile-nav-item active">
+            <span>🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="#projects" class="mobile-nav-item">
+            <span>🚀</span>
+            <span>Projects</span>
+        </a>
+        <a href="#stack" class="mobile-nav-item">
+            <span>⚡</span>
+            <span>Stack</span>
+        </a>
+        <a href="#connect" class="mobile-nav-item">
+            <span>📬</span>
+            <span>Contact</span>
+        </a>
+    </nav>
+
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
@@ -277,6 +331,12 @@
 
     <!-- SCRIPTS -->
     <script>
+        // Toggle Mobile Menu Drawer
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            drawer.classList.toggle('open');
+        }
+
         // Hero Title Typewriter Effect
         const titles = [
             "Software Engineering Student",
@@ -318,92 +378,72 @@
 
         setTimeout(typeWriter, 1000);
 
-        // Galaxy & Planets Animation Script
-        const canvas = document.getElementById("galaxy-canvas");
-        const ctx = canvas.getContext("2d");
+        // Starry Galaxy Canvas Animation
+        const canvas = document.getElementById('galaxy-canvas');
+        const ctx = canvas.getContext('2d');
 
         let width, height;
-        function resize() {
+        let stars = [];
+        const numStars = 150;
+
+        function resizeCanvas() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
         }
-        window.addEventListener("resize", resize);
-        resize();
 
-        // Generate Stars
-        const stars = [];
-        const numStars = Math.floor((window.innerWidth * window.innerHeight) / 3000);
-        for (let i = 0; i < numStars; i++) {
-            stars.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                radius: Math.random() * 1.5,
-                alpha: Math.random(),
-                speed: Math.random() * 0.02 + 0.005
-            });
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Star {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 1.8;
+                this.baseAlpha = Math.random() * 0.7 + 0.3;
+                this.alpha = this.baseAlpha;
+                this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+                this.vy = (Math.random() * 0.2) + 0.05; // Gentle upward drift
+            }
+
+            update() {
+                this.y -= this.vy;
+                if (this.y < 0) {
+                    this.y = height;
+                    this.x = Math.random() * width;
+                }
+                // Twinkle effect
+                this.alpha += Math.sin(Date.now() * this.twinkleSpeed) * 0.01;
+                if (this.alpha < 0.1) this.alpha = 0.1;
+                if (this.alpha > 1) this.alpha = 1;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
 
-        // Generate Planets with rings/atmospheres
-        const planets = [
-            { x: width * 0.15, y: height * 0.3, radius: 45, color: '#10b981', ring: true, speedX: 0.05, speedY: 0.02, angle: 0 },
-            { x: width * 0.85, y: height * 0.7, radius: 30, color: '#3b82f6', ring: false, speedX: -0.03, speedY: 0.01, angle: 1 },
-            { x: width * 0.75, y: height * 0.2, radius: 20, color: '#f59e0b', ring: false, speedX: 0.02, speedY: -0.02, angle: 2 }
-        ];
+        for (let i = 0; i < numStars; i++) {
+            stars.push(new Star());
+        }
 
         function animateGalaxy() {
             ctx.clearRect(0, 0, width, height);
 
-            // Draw Nebula background glow gradient
-            let gradient = ctx.createRadialGradient(width * 0.5, height * 0.3, 50, width * 0.5, height * 0.3, width * 0.8);
-            gradient.addColorStop(0, "rgba(16, 185, 129, 0.03)");
-            gradient.addColorStop(0.5, "rgba(59, 130, 246, 0.02)");
-            gradient.addColorStop(1, "transparent");
+            // Draw deep space gradient background
+            const gradient = ctx.createRadialGradient(width / 2, height / 2, 50, width / 2, height / 2, Math.max(width, height));
+            gradient.addColorStop(0, '#0a0f1d');
+            gradient.addColorStop(0.5, '#05080b');
+            gradient.addColorStop(1, '#020305');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, width, height);
 
-            // Draw Stars
+            // Update and draw stars
             stars.forEach(star => {
-                star.alpha += star.speed;
-                if (star.alpha > 1 || star.alpha < 0.2) star.speed = -star.speed;
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(star.alpha)})`;
-                ctx.fill();
-            });
-
-            // Draw Planets
-            planets.forEach(p => {
-                p.angle += 0.003;
-                let currentX = p.x + Math.sin(p.angle) * 30;
-                let currentY = p.y + Math.cos(p.angle) * 20;
-
-                // Planet shadow gradient
-                let pGrad = ctx.createRadialGradient(currentX - p.radius * 0.3, currentY - p.radius * 0.3, p.radius * 0.1, currentX, currentY, p.radius);
-                pGrad.addColorStop(0, "#ffffff");
-                pGrad.addColorStop(0.3, p.color);
-                pGrad.addColorStop(1, "#05080b");
-
-                ctx.save();
-                ctx.shadowBlur = 25;
-                ctx.shadowColor = p.color;
-
-                ctx.beginPath();
-                ctx.arc(currentX, currentY, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = pGrad;
-                ctx.fill();
-                ctx.restore();
-
-                // Optional Planet Ring
-                if (p.ring) {
-                    ctx.save();
-                    ctx.beginPath();
-                    ctx.strokeStyle = "rgba(16, 185, 129, 0.35)";
-                    ctx.lineWidth = 4;
-                    ctx.scale(1, 0.3);
-                    ctx.arc(currentX, (currentY / 0.3), p.radius * 1.8, 0, Math.PI * 2);
-                    ctx.stroke();
-                    ctx.restore();
-                }
+                star.update();
+                star.draw();
             });
 
             requestAnimationFrame(animateGalaxy);
