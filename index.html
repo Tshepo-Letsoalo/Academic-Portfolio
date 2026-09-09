@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="TshepoInCodeLand">
+    <meta name="theme-color" content="#05080b">
     <meta name="description" content="Tshepo Eugene Letsoalo - Software Engineering Student & Cybersecurity Analyst Academic Portfolio">
     <title>TshepoInCodeLand | Academic Portfolio</title>
     <link rel="icon" type="image/png" href="favicon.png">
@@ -11,7 +15,40 @@
 </head>
 <body>
 
-    <!-- TOP NAVIGATION BAR -->
+    <!-- COSMIC BACKGROUND -->
+    <div class="space-background" aria-hidden="true"></div>
+
+    <!-- MOBILE APP HEADER -->
+    <header class="mobile-app-header">
+        <div class="mobile-header-left">
+            <span class="mobile-avatar">TL</span>
+            <div>
+                <span class="mobile-app-title">TshepoInCodeLand</span>
+                <span class="mobile-app-subtitle">v2.6 • Secure Shell</span>
+            </div>
+        </div>
+        <div class="mobile-header-right">
+            <button class="mobile-action-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="Home">🏠</button>
+            <button class="mobile-action-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <!-- MOBILE NAV DRAWER -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <span>Navigation Menu</span>
+            <button onclick="toggleMobileMenu()" class="close-drawer">✕</button>
+        </div>
+        <div class="drawer-links">
+            <a href="#" onclick="toggleMobileMenu()">🏠 Home Dashboard</a>
+            <a href="#projects" onclick="toggleMobileMenu()">🚀 Technical Projects</a>
+            <a href="#stack" onclick="toggleMobileMenu()">⚡ Technical Stack</a>
+            <a href="#experience" onclick="toggleMobileMenu()">🎓 Experience & Education</a>
+            <a href="#connect" onclick="toggleMobileMenu()">📬 Get in Touch</a>
+        </div>
+    </div>
+
+    <!-- TOP NAVIGATION BAR (Desktop) -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-left">
@@ -130,7 +167,7 @@
     </section>
 
     <!-- TECHNICAL STACK -->
-    <section class="section">
+    <section id="stack" class="section">
         <h2>Technical Stack</h2>
         <p class="section-desc">Languages, frameworks, and developer toolsets utilized daily.</p>
 
@@ -163,7 +200,7 @@
     </section>
 
     <!-- EXPERIENCE & EDUCATION TIMELINE -->
-    <section class="section">
+    <section id="experience" class="section">
         <h2>Experience & Education</h2>
         <p class="section-desc">Academic milestones and industry-recognized certifications.</p>
 
@@ -260,6 +297,26 @@
         </div>
     </section>
 
+    <!-- MOBILE APP BOTTOM NAVIGATION BAR -->
+    <nav class="mobile-bottom-nav">
+        <a href="#" class="mobile-nav-item active">
+            <span>🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="#projects" class="mobile-nav-item">
+            <span>🚀</span>
+            <span>Projects</span>
+        </a>
+        <a href="#stack" class="mobile-nav-item">
+            <span>⚡</span>
+            <span>Stack</span>
+        </a>
+        <a href="#connect" class="mobile-nav-item">
+            <span>📬</span>
+            <span>Contact</span>
+        </a>
+    </nav>
+
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
@@ -274,6 +331,12 @@
 
     <!-- SCRIPTS -->
     <script>
+        // Toggle Mobile Menu Drawer
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            drawer.classList.toggle('open');
+        }
+
         // Hero Title Typewriter Effect
         const titles = [
             "Software Engineering Student",
