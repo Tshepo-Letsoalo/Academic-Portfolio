@@ -1,4 +1,3 @@
-/* Base Resets & Variables */
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +14,6 @@ body {
     -webkit-text-size-adjust: 100%;
 }
 
-/* Immersive Starry Galaxy Canvas */
 #galaxy-canvas {
     position: fixed;
     top: 0;
@@ -31,7 +29,6 @@ body {
     z-index: 1;
 }
 
-/* Default Desktop Navbar */
 .navbar {
     position: fixed;
     top: 0;
@@ -101,29 +98,6 @@ body {
     color: #10b981;
 }
 
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.icon-btn {
-    background: transparent;
-    border: none;
-    font-size: 1.1rem;
-    cursor: pointer;
-}
-
-.nav-socials {
-    display: flex;
-    gap: 12px;
-}
-
-.social-icon {
-    text-decoration: none;
-    font-size: 1.1rem;
-}
-
 .status-pill {
     display: flex;
     align-items: center;
@@ -147,7 +121,6 @@ body {
     box-shadow: 0 0 8px #10b981;
 }
 
-/* Mobile App Frame Header & Bottom Bar (Hidden by default on desktop) */
 .mobile-app-header {
     display: none;
     position: fixed;
@@ -248,7 +221,6 @@ body {
     color: #10b981;
 }
 
-/* Slide-out Menu Drawer */
 .mobile-drawer {
     position: fixed;
     top: 0;
@@ -305,7 +277,6 @@ body {
     color: #10b981;
 }
 
-/* Hero Section */
 .hero {
     max-width: 900px;
     margin: 140px auto 80px auto;
@@ -400,7 +371,6 @@ body {
     border-color: #374151;
 }
 
-/* Sections */
 .section {
     max-width: 1200px;
     margin: 80px auto;
@@ -419,7 +389,6 @@ body {
     margin-bottom: 40px;
 }
 
-/* Grids & Cards */
 .grid-3 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -429,12 +398,6 @@ body {
 .grid-4 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
-}
-
-.grid-2 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
     gap: 24px;
 }
 
@@ -493,7 +456,6 @@ body {
     text-decoration: underline;
 }
 
-/* Skills */
 .skill-item {
     margin-bottom: 16px;
 }
@@ -519,7 +481,6 @@ body {
     border-radius: 3px;
 }
 
-/* Timeline */
 .timeline {
     border-left: 2px solid #1f2937;
     padding-left: 24px;
@@ -560,7 +521,6 @@ body {
     font-size: 0.95rem;
 }
 
-/* Social Cards */
 .social-cards-container {
     display: flex;
     flex-direction: column;
@@ -617,7 +577,6 @@ body {
     font-family: 'Fira Code', monospace;
 }
 
-/* Footer */
 footer {
     border-top: 1px solid #1f2937;
     padding: 40px 24px 90px 24px;
@@ -628,43 +587,28 @@ footer {
     background-color: rgba(5, 8, 11, 0.9);
 }
 
-.footer-links {
-    margin-top: 12px;
-}
-
-.footer-links a {
-    color: #10b981;
-    text-decoration: none;
-    margin: 0 8px;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-}
-
-/* Mobile App View Breakpoint Adjustments */
 @media(max-width: 900px) {
     .navbar {
-        display: none; /* Hide standard desktop top navbar */
+        display: none;
     }
     .mobile-app-header {
-        display: flex; /* Turn on mobile app top bar */
+        display: flex;
     }
     .mobile-bottom-nav {
-        display: flex; /* Turn on mobile app bottom bar */
+        display: flex;
     }
     .hero {
         margin-top: 90px;
         padding: 0 16px;
     }
     .hero h1 {
-        font-size: 2rem; /* Shrinks the text down so it fits nicely on cellphones */
+        font-size: 2rem;
     }
     .section {
         padding: 0 16px;
         margin: 60px auto;
     }
-    .grid-3, .grid-4, .grid-2 {
-        grid-template-columns: 1fr; /* Stacks grids tightly on mobile */
+    .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
     }
 }
