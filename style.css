@@ -14,7 +14,7 @@ body {
     position: relative;
 }
 
-/* Space Background Planets Layer */
+/* Immersive Solar System / Planets Space Background */
 .space-background {
     position: fixed;
     top: 0;
@@ -23,82 +23,13 @@ body {
     height: 100vh;
     pointer-events: none;
     z-index: 0;
-    overflow: hidden;
-}
-
-/* Planet 1: Large glowing green gas giant in top-right */
-.planet-1 {
-    position: absolute;
-    top: -100px;
-    right: -150px;
-    width: 550px;
-    height: 550px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, #10b981 0%, #044e33 45%, #05080b 80%);
-    box-shadow: inset -50px -50px 100px rgba(0, 0, 0, 0.9), 0 0 60px rgba(16, 185, 129, 0.15);
-    opacity: 0.65;
-}
-
-.planet-1::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 50%;
-    background: linear-gradient(135deg, transparent 40%, rgba(16, 185, 129, 0.2) 50%, transparent 60%);
-}
-
-/* Planet 2: Ringed planet in mid-left */
-.planet-2 {
-    position: absolute;
-    top: 45vh;
-    left: -120px;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #3b82f6 0%, #1e3a8a 55%, #05080b 85%);
-    box-shadow: inset -40px -40px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(59, 130, 246, 0.15);
-    opacity: 0.55;
-}
-
-/* Planet 2 Rings */
-.planet-2::before {
-    content: '';
-    position: absolute;
-    top: 45%;
-    left: -35%;
-    width: 170%;
-    height: 30%;
-    border: 3px solid rgba(59, 130, 246, 0.4);
-    border-radius: 50%;
-    transform: rotate(-15deg);
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
-    pointer-events: none;
-}
-
-/* Planet 3: Small distant copper moon in lower right */
-.planet-3 {
-    position: absolute;
-    bottom: 10vh;
-    right: 10vw;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #f59e0b 0%, #78350f 60%, #05080b 85%);
-    box-shadow: inset -20px -20px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(245, 158, 11, 0.1);
-    opacity: 0.45;
-}
-
-/* Subtle background stars / space dust */
-.space-dust {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
     background-image: 
-        radial-gradient(white 1px, transparent 0),
-        radial-gradient(rgba(16, 185, 129, 0.8) 1px, transparent 0),
-        radial-gradient(rgba(59, 130, 246, 0.6) 1.5px, transparent 0);
-    background-size: 250px 250px, 180px 180px, 320px 320px;
-    background-position: 0 0, 40px 60px, 120px 90px;
-    opacity: 0.35;
+        linear-gradient(to bottom, rgba(5, 8, 11, 0.75), rgba(5, 8, 11, 0.90)),
+        url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=2000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.55; /* Acts as a gorgeous watermark/background overlay */
 }
 
 /* Ensure all content sits above the background layer */
@@ -569,11 +500,5 @@ footer {
     }
     .nav-center {
         display: none;
-    }
-    .planet-1 {
-        width: 350px;
-        height: 350px;
-        right: -100px;
-        top: -50px;
     }
 }
