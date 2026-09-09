@@ -11,6 +11,9 @@
 </head>
 <body>
 
+    <!-- GALAXY BACKGROUND CANVAS -->
+    <canvas id="galaxy-canvas"></canvas>
+
     <!-- TOP NAVIGATION BAR -->
     <nav class="navbar">
         <div class="nav-container">
@@ -314,6 +317,99 @@
         }
 
         setTimeout(typeWriter, 1000);
+
+        // Galaxy & Planets Animation Script
+        const canvas = document.getElementById("galaxy-canvas");
+        const ctx = canvas.getContext("2d");
+
+        let width, height;
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        // Generate Stars
+        const stars = [];
+        const numStars = Math.floor((window.innerWidth * window.innerHeight) / 3000);
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 1.5,
+                alpha: Math.random(),
+                speed: Math.random() * 0.02 + 0.005
+            });
+        }
+
+        // Generate Planets with rings/atmospheres
+        const planets = [
+            { x: width * 0.15, y: height * 0.3, radius: 45, color: '#10b981', ring: true, speedX: 0.05, speedY: 0.02, angle: 0 },
+            { x: width * 0.85, y: height * 0.7, radius: 30, color: '#3b82f6', ring: false, speedX: -0.03, speedY: 0.01, angle: 1 },
+            { x: width * 0.75, y: height * 0.2, radius: 20, color: '#f59e0b', ring: false, speedX: 0.02, speedY: -0.02, angle: 2 }
+        ];
+
+        function animateGalaxy() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Draw Nebula background glow gradient
+            let gradient = ctx.createRadialGradient(width * 0.5, height * 0.3, 50, width * 0.5, height * 0.3, width * 0.8);
+            gradient.addColorStop(0, "rgba(16, 185, 129, 0.03)");
+            gradient.addColorStop(0.5, "rgba(59, 130, 246, 0.02)");
+            gradient.addColorStop(1, "transparent");
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+
+            // Draw Stars
+            stars.forEach(star => {
+                star.alpha += star.speed;
+                if (star.alpha > 1 || star.alpha < 0.2) star.speed = -star.speed;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(star.alpha)})`;
+                ctx.fill();
+            });
+
+            // Draw Planets
+            planets.forEach(p => {
+                p.angle += 0.003;
+                let currentX = p.x + Math.sin(p.angle) * 30;
+                let currentY = p.y + Math.cos(p.angle) * 20;
+
+                // Planet shadow gradient
+                let pGrad = ctx.createRadialGradient(currentX - p.radius * 0.3, currentY - p.radius * 0.3, p.radius * 0.1, currentX, currentY, p.radius);
+                pGrad.addColorStop(0, "#ffffff");
+                pGrad.addColorStop(0.3, p.color);
+                pGrad.addColorStop(1, "#05080b");
+
+                ctx.save();
+                ctx.shadowBlur = 25;
+                ctx.shadowColor = p.color;
+
+                ctx.beginPath();
+                ctx.arc(currentX, currentY, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = pGrad;
+                ctx.fill();
+                ctx.restore();
+
+                // Optional Planet Ring
+                if (p.ring) {
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.strokeStyle = "rgba(16, 185, 129, 0.35)";
+                    ctx.lineWidth = 4;
+                    ctx.scale(1, 0.3);
+                    ctx.arc(currentX, (currentY / 0.3), p.radius * 1.8, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            });
+
+            requestAnimationFrame(animateGalaxy);
+        }
+
+        animateGalaxy();
     </script>
 </body>
 </html>
