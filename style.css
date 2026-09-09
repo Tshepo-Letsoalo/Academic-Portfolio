@@ -1,4 +1,3 @@
-/* Base Resets & Variables */
 * {
     margin: 0;
     padding: 0;
@@ -15,8 +14,7 @@ body {
     -webkit-text-size-adjust: 100%;
 }
 
-/* Immersive Space Background */
-.space-background {
+#galaxy-canvas {
     position: fixed;
     top: 0;
     left: 0;
@@ -24,13 +22,6 @@ body {
     height: 100vh;
     pointer-events: none;
     z-index: 0;
-    background-image: 
-        linear-gradient(to bottom, rgba(5, 8, 11, 0.75), rgba(5, 8, 11, 0.90)),
-        url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=2000&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.55;
 }
 
 .navbar, .hero, .section, footer, .mobile-app-header, .mobile-bottom-nav {
@@ -38,7 +29,6 @@ body {
     z-index: 1;
 }
 
-/* Default Desktop Navbar */
 .navbar {
     position: fixed;
     top: 0;
@@ -108,29 +98,6 @@ body {
     color: #10b981;
 }
 
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.icon-btn {
-    background: transparent;
-    border: none;
-    font-size: 1.1rem;
-    cursor: pointer;
-}
-
-.nav-socials {
-    display: flex;
-    gap: 12px;
-}
-
-.social-icon {
-    text-decoration: none;
-    font-size: 1.1rem;
-}
-
 .status-pill {
     display: flex;
     align-items: center;
@@ -154,14 +121,13 @@ body {
     box-shadow: 0 0 8px #10b981;
 }
 
-/* Mobile App Frame Header & Bottom Bar (Hidden by default on desktop) */
 .mobile-app-header {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(5, 8, 11, 0.92);
+    background-color: rgba(5, 8, 11, 0.95);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid #1f2937;
     padding: 12px 16px;
@@ -227,10 +193,10 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(5, 8, 11, 0.95);
+    background-color: rgba(5, 8, 11, 0.98);
     backdrop-filter: blur(16px);
     border-top: 1px solid #1f2937;
-    padding: 8px 12px env(safe-area-inset-bottom, 8px) 12px;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px)) 12px;
     z-index: 1100;
     justify-content: space-around;
     align-items: center;
@@ -243,19 +209,18 @@ body {
     text-decoration: none;
     color: #9ca3af;
     font-size: 0.7rem;
-    gap: 2px;
+    gap: 3px;
     transition: color 0.2s;
 }
 
 .mobile-nav-item span:first-child {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
 }
 
 .mobile-nav-item.active, .mobile-nav-item:hover {
     color: #10b981;
 }
 
-/* Slide-out Menu Drawer */
 .mobile-drawer {
     position: fixed;
     top: 0;
@@ -312,10 +277,9 @@ body {
     color: #10b981;
 }
 
-/* Hero Section */
 .hero {
     max-width: 900px;
-    margin: 140px auto 80px auto;
+    margin: 140px auto 60px auto;
     padding: 0 24px;
     display: flex;
     flex-direction: column;
@@ -339,10 +303,21 @@ body {
 }
 
 .hero h1 {
-    font-size: 2.8rem;
-    line-height: 1.2;
+    font-size: 2.6rem;
+    line-height: 1.25;
     font-weight: 800;
     margin-bottom: 20px;
+    letter-spacing: -0.02em;
+}
+
+.hero-name {
+    color: #ffffff;
+}
+
+.hero-divider {
+    color: #10b981;
+    font-weight: 400;
+    margin: 0 6px;
 }
 
 .hero-subtitle {
@@ -350,6 +325,7 @@ body {
     font-size: 1.05rem;
     margin-bottom: 24px;
     max-width: 750px;
+    line-height: 1.6;
 }
 
 .contact-chips {
@@ -378,6 +354,7 @@ body {
 .hero-cta {
     display: flex;
     gap: 16px;
+    flex-wrap: wrap;
 }
 
 .btn-primary, .btn-secondary {
@@ -386,6 +363,7 @@ body {
     font-weight: 600;
     text-decoration: none;
     font-size: 0.95rem;
+    text-align: center;
 }
 
 .btn-primary {
@@ -407,42 +385,35 @@ body {
     border-color: #374151;
 }
 
-/* Sections */
 .section {
     max-width: 1200px;
-    margin: 80px auto;
+    margin: 70px auto;
     padding: 0 24px;
 }
 
 .section h2 {
-    font-size: 2rem;
+    font-size: 1.85rem;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
 }
 
 .section-desc {
     color: #9ca3af;
-    font-size: 1.05rem;
-    margin-bottom: 40px;
+    font-size: 1rem;
+    margin-bottom: 32px;
 }
 
-/* Grids & Cards */
 .grid-3 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
 }
 
 .grid-4 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
-}
-
-.grid-2 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
 }
 
 .card, .project-card, .skill-group {
@@ -450,28 +421,30 @@ body {
     backdrop-filter: blur(8px);
     border: 1px solid #1f2937;
     border-radius: 12px;
-    padding: 28px;
+    padding: 24px;
     transition: transform 0.2s, border-color 0.2s;
 }
 
 .card:hover, .project-card:hover {
     border-color: #374151;
-    transform: translateY(-4px);
+    transform: translateY(-2px);
 }
 
 .card-icon {
-    font-size: 2rem;
-    margin-bottom: 16px;
+    font-size: 1.8rem;
+    margin-bottom: 14px;
 }
 
 .card h3, .project-card h3, .skill-group h3 {
-    font-size: 1.2rem;
-    margin-bottom: 12px;
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    color: #ffffff;
 }
 
 .card p, .project-card p {
     color: #9ca3af;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
 }
 
 .project-tag {
@@ -483,13 +456,13 @@ body {
     border-radius: 6px;
     font-size: 0.75rem;
     font-weight: 600;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     font-family: 'Fira Code', monospace;
 }
 
 .project-link {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 18px;
     color: #10b981;
     text-decoration: none;
     font-weight: 600;
@@ -500,15 +473,14 @@ body {
     text-decoration: underline;
 }
 
-/* Skills */
 .skill-item {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .skill-item span {
     display: block;
-    font-size: 0.9rem;
-    margin-bottom: 6px;
+    font-size: 0.88rem;
+    margin-bottom: 5px;
     color: #d1d5db;
 }
 
@@ -526,21 +498,20 @@ body {
     border-radius: 3px;
 }
 
-/* Timeline */
 .timeline {
     border-left: 2px solid #1f2937;
-    padding-left: 24px;
-    margin-left: 12px;
+    padding-left: 20px;
+    margin-left: 8px;
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
 }
 
 .timeline-dot {
     position: absolute;
-    left: -31px;
+    left: -27px;
     top: 4px;
     width: 12px;
     height: 12px;
@@ -551,27 +522,27 @@ body {
 
 .timeline-date {
     font-family: 'Fira Code', monospace;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #10b981;
     display: inline-block;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .timeline-item h3 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+    color: #ffffff;
 }
 
 .timeline-item p {
     color: #9ca3af;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
 }
 
-/* Social Cards */
 .social-cards-container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     max-width: 700px;
     margin: 0 auto;
 }
@@ -583,7 +554,7 @@ body {
     background-color: rgba(11, 15, 19, 0.85);
     backdrop-filter: blur(8px);
     border: 1px solid #1f2937;
-    padding: 18px 24px;
+    padding: 16px 20px;
     border-radius: 12px;
     text-decoration: none;
     color: #ffffff;
@@ -599,79 +570,110 @@ body {
 .social-card-left {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
 }
 
 .social-icon-box {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .social-name {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #f3f4f6;
 }
 
 .external-icon {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #9ca3af;
     margin-left: 4px;
 }
 
 .social-handle {
     color: #9ca3af;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-family: 'Fira Code', monospace;
 }
 
-/* Footer */
+/* FIX for long email address overflow on mobile screens */
+.email-text {
+    word-break: break-all;
+    overflow-wrap: break-word;
+    max-width: 200px;
+    text-align: right;
+}
+
 footer {
     border-top: 1px solid #1f2937;
-    padding: 40px 24px 90px 24px;
+    padding: 30px 24px 100px 24px;
     text-align: center;
     color: #9ca3af;
-    font-size: 0.9rem;
-    margin-top: 100px;
+    font-size: 0.88rem;
+    margin-top: 80px;
     background-color: rgba(5, 8, 11, 0.9);
 }
 
-.footer-links {
-    margin-top: 12px;
-}
-
-.footer-links a {
-    color: #10b981;
-    text-decoration: none;
-    margin: 0 8px;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-}
-
-/* Mobile App View Breakpoint Adjustments */
+/* Mobile Specific Tweaks to Fix Layout Crunching */
 @media(max-width: 900px) {
     .navbar {
-        display: none; /* Hide standard desktop top navbar */
+        display: none;
     }
     .mobile-app-header {
-        display: flex; /* Turn on mobile app top bar */
+        display: flex;
     }
     .mobile-bottom-nav {
-        display: flex; /* Turn on mobile app bottom bar */
+        display: flex;
     }
     .hero {
-        margin-top: 90px;
+        margin: 100px auto 40px auto;
         padding: 0 16px;
     }
     .hero h1 {
-        font-size: 2rem; /* Shrinks the text down so it fits nicely on cellphones */
+        font-size: 1.7rem;
+        line-height: 1.3;
+    }
+    .hero-divider {
+        display: none; /* Stack cleanly on narrow phone screens */
+    }
+    .hero-subtitle {
+        font-size: 0.95rem;
     }
     .section {
         padding: 0 16px;
-        margin: 60px auto;
+        margin: 50px auto;
     }
-    .grid-3, .grid-4, .grid-2 {
-        grid-template-columns: 1fr; /* Stacks grids tightly on mobile */
+    .section h2 {
+        font-size: 1.5rem;
+    }
+    .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+    }
+    .contact-chips {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .chip {
+        text-align: center;
+    }
+    .hero-cta {
+        flex-direction: column;
+    }
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+    
+    /* Additional Mobile Specific Wrap for Contact Cards */
+    .social-card {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+    }
+    .social-handle {
+        font-size: 0.78rem;
+    }
+    .email-text {
+        max-width: 150px;
     }
 }
