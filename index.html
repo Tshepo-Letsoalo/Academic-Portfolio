@@ -6,17 +6,18 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="TshepoInCodeLand">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#05080b">
-    <meta name="description" content="Tshepo Eugene Letsoalo - Software Engineering Student & Cybersecurity Analyst Academic Portfolio">
+    <link rel="manifest" href="manifest.json">
     <title>TshepoInCodeLand | Academic Portfolio</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- COSMIC BACKGROUND -->
-    <div class="space-background" aria-hidden="true"></div>
+    <!-- COSMIC GALAXY CANVAS -->
+    <canvas id="galaxy-canvas" aria-hidden="true"></canvas>
 
     <!-- MOBILE APP HEADER -->
     <header class="mobile-app-header">
@@ -64,13 +65,6 @@
             </div>
 
             <div class="nav-right">
-                <button class="icon-btn" aria-label="Theme Customizer">🎨</button>
-                <button class="icon-btn" aria-label="Dark Mode Toggle">🌙</button>
-                <div class="nav-socials">
-                    <a href="https://github.com/Tshepo-Letsoalo" target="_blank" class="social-icon" aria-label="GitHub">🐙</a>
-                    <a href="https://reddit.com/u/Decent_Rent6731" target="_blank" class="social-icon" aria-label="Reddit">reddit</a>
-                    <a href="https://linkedin.com/in/tshepo-letsoalo-45bb67377" target="_blank" class="social-icon" aria-label="LinkedIn">💼</a>
-                </div>
                 <div class="status-pill">
                     <span class="dot green"></span> status: building
                 </div>
@@ -84,7 +78,7 @@
             <div class="badge-container">
                 <span class="status-badge">🟢 Available for Opportunities</span>
             </div>
-            <h1>Tshepo Eugene Letsoalo:<br><span class="highlight" id="rotating-title">Software Engineering Student</span></h1>
+            <h1><span class="hero-name">Tshepo Eugene Letsoalo</span><span class="hero-divider">—</span><br><span class="highlight" id="rotating-title">Software Engineering Student</span></h1>
             <p class="hero-subtitle">
                 BSc Computer Science student at University of the People, specialising in Cybersecurity, Python backend development, and user experience design. Building secure, data-driven systems.
             </p>
@@ -226,37 +220,6 @@
         </div>
     </section>
 
-    <!-- DEVELOPMENT NOTES -->
-    <section class="section">
-        <h2>Development Notes</h2>
-        <p class="section-desc">Key architectural decisions, security workflows, and ongoing optimization logs.</p>
-
-        <div class="grid-2">
-            <div class="card">
-                <span class="project-tag">Workflow</span>
-                <h3>Version Control Discipline</h3>
-                <p>Maintained structured branches, conventional commit standards, and automated deployment pipelines via Vercel and GitHub integrations.</p>
-            </div>
-            <div class="card">
-                <span class="project-tag">Security</span>
-                <h3>Environment Hardening</h3>
-                <p>Implemented secure environment configurations, credential segregation, and strict permission controls across development nodes.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- WORKBENCH -->
-    <section class="section">
-        <h2>Workbench</h2>
-        <p class="section-desc">Active hardware, operating systems, and development toolchain parameters.</p>
-
-        <div class="card">
-            <div class="skill-item"><span>macOS Sequoia & OpenCore Environment</span><div class="bar"><div class="fill" style="width: 95%;"></div></div></div>
-            <div class="skill-item"><span>VS Code & IntelliJ Ultimate Toolchains</span><div class="bar"><div class="fill" style="width: 90%;"></div></div></div>
-            <div class="skill-item"><span>Local SMB File Sharing & Network Routing</span><div class="bar"><div class="fill" style="width: 85%;"></div></div></div>
-        </div>
-    </section>
-
     <!-- SOCIAL & CONTACT CARDS SECTION -->
     <section id="connect" class="section">
         <h2>Get in Touch</h2>
@@ -321,23 +284,16 @@
     <footer>
         <div class="footer-content">
             <p>&copy; 2026 Tshepo Eugene Letsoalo. Built with precision and dark mode styling.</p>
-            <p class="footer-links">
-                <a href="https://github.com/Tshepo-Letsoalo" target="_blank">GitHub</a> | 
-                <a href="https://linkedin.com/in/tshepo-letsoalo-45bb67377" target="_blank">LinkedIn</a> | 
-                <a href="mailto:tshepo.eugene.letsoalo@gmail.com">Email</a>
-            </p>
         </div>
     </footer>
 
     <!-- SCRIPTS -->
     <script>
-        // Toggle Mobile Menu Drawer
         function toggleMobileMenu() {
             const drawer = document.getElementById('mobileDrawer');
             drawer.classList.toggle('open');
         }
 
-        // Hero Title Typewriter Effect
         const titles = [
             "Software Engineering Student",
             "Cybersecurity Analyst",
@@ -377,6 +333,75 @@
         }
 
         setTimeout(typeWriter, 1000);
+
+        const canvas = document.getElementById('galaxy-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let stars = [];
+        const numStars = 150;
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Star {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 1.8;
+                this.baseAlpha = Math.random() * 0.7 + 0.3;
+                this.alpha = this.baseAlpha;
+                this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+                this.vy = (Math.random() * 0.2) + 0.05;
+            }
+
+            update() {
+                this.y -= this.vy;
+                if (this.y < 0) {
+                    this.y = height;
+                    this.x = Math.random() * width;
+                }
+                this.alpha += Math.sin(Date.now() * this.twinkleSpeed) * 0.01;
+                if (this.alpha < 0.1) this.alpha = 0.1;
+                if (this.alpha > 1) this.alpha = 1;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < numStars; i++) {
+            stars.push(new Star());
+        }
+
+        function animateGalaxy() {
+            ctx.clearRect(0, 0, width, height);
+
+            const gradient = ctx.createRadialGradient(width / 2, height / 2, 50, width / 2, height / 2, Math.max(width, height));
+            gradient.addColorStop(0, '#0a0f1d');
+            gradient.addColorStop(0.5, '#05080b');
+            gradient.addColorStop(1, '#020305');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+
+            stars.forEach(star => {
+                star.update();
+                star.draw();
+            });
+
+            requestAnimationFrame(animateGalaxy);
+        }
+
+        animateGalaxy();
     </script>
 </body>
 </html>
