@@ -279,7 +279,7 @@ body {
 
 .hero {
     max-width: 900px;
-    margin: 140px auto 60px auto;
+    margin: 120px auto 40px auto;
     padding: 0 24px;
     display: flex;
     flex-direction: column;
@@ -387,7 +387,7 @@ body {
 
 .section {
     max-width: 1200px;
-    margin: 70px auto;
+    margin: 50px auto;
     padding: 0 24px;
 }
 
@@ -401,7 +401,7 @@ body {
 .section-desc {
     color: #9ca3af;
     font-size: 1rem;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 .grid-3 {
@@ -542,7 +542,7 @@ body {
 .social-cards-container {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
     max-width: 700px;
     margin: 0 auto;
 }
@@ -554,11 +554,12 @@ body {
     background-color: rgba(11, 15, 19, 0.85);
     backdrop-filter: blur(8px);
     border: 1px solid #1f2937;
-    padding: 16px 20px;
+    padding: 14px 18px;
     border-radius: 12px;
     text-decoration: none;
     color: #ffffff;
     transition: all 0.2s ease-in-out;
+    width: 100%;
 }
 
 .social-card:hover {
@@ -571,6 +572,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-shrink: 0;
 }
 
 .social-icon-box {
@@ -583,37 +585,26 @@ body {
     color: #f3f4f6;
 }
 
-.external-icon {
-    font-size: 0.8rem;
-    color: #9ca3af;
-    margin-left: 4px;
-}
-
 .social-handle {
     color: #9ca3af;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-family: 'Fira Code', monospace;
-}
-
-/* FIX for long email address overflow on mobile screens */
-.email-text {
-    word-break: break-all;
-    overflow-wrap: break-word;
-    max-width: 200px;
     text-align: right;
+    word-break: normal;
+    overflow-wrap: normal;
 }
 
 footer {
     border-top: 1px solid #1f2937;
-    padding: 30px 24px 100px 24px;
+    padding: 24px 24px 90px 24px;
     text-align: center;
     color: #9ca3af;
-    font-size: 0.88rem;
-    margin-top: 80px;
+    font-size: 0.85rem;
+    margin-top: 50px;
     background-color: rgba(5, 8, 11, 0.9);
 }
 
-/* Mobile Specific Tweaks to Fix Layout Crunching */
+/* Mobile Specific Tweaks */
 @media(max-width: 900px) {
     .navbar {
         display: none;
@@ -625,25 +616,25 @@ footer {
         display: flex;
     }
     .hero {
-        margin: 100px auto 40px auto;
+        margin: 80px auto 30px auto;
         padding: 0 16px;
     }
     .hero h1 {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
         line-height: 1.3;
     }
     .hero-divider {
-        display: none; /* Stack cleanly on narrow phone screens */
+        display: none;
     }
     .hero-subtitle {
-        font-size: 0.95rem;
+        font-size: 0.92rem;
     }
     .section {
         padding: 0 16px;
-        margin: 50px auto;
+        margin: 40px auto;
     }
     .section h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
     .grid-3, .grid-4 {
         grid-template-columns: 1fr;
@@ -662,18 +653,23 @@ footer {
         width: 100%;
     }
     
-    /* Additional Mobile Specific Wrap for Contact Cards */
+    /* Strict Mobile Layout Fix for Contact Cards & Email Overlap */
     .social-card {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
         padding: 14px 16px;
     }
-    .social-handle {
-        font-size: 0.78rem;
+    .social-card-left {
+        width: 100%;
+        justify-content: flex-start;
     }
-    .email-text {
-        max-width: 150px;
+    .social-handle {
+        text-align: left;
+        font-size: 0.78rem;
+        word-break: break-all;
+        overflow-wrap: break-word;
+        width: 100%;
+        padding-left: 28px;
     }
 }
