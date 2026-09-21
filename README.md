@@ -2,7 +2,7 @@
 
 A fully responsive, dark-mode developer portfolio showcasing my academic journey, technical skills, certifications, and featured software engineering projects. 
 
-🌐 **Live Website:** [https://tshepo-letsoalo.github.io/Academic-Portfolio/](https://tshepo-letsoalo.github.io/Academic-Portfolio/)
+ **Live Website:** [https://tshepo-letsoalo.github.io/Academic-Portfolio/](https://tshepo-letsoalo.github.io/Academic-Portfolio/)
 
 ---
 
