@@ -1,4 +1,4 @@
-# 🚀 Academic & Technical Portfolio
+#  Academic & Technical Portfolio
 
 A fully responsive, dark-mode developer portfolio showcasing my academic journey, technical skills, certifications, and featured software engineering projects. 
 
@@ -6,13 +6,13 @@ A fully responsive, dark-mode developer portfolio showcasing my academic journey
 
 ---
 
-## ✨ Overview
+##  Overview
 
 This repository houses the source code for my personal portfolio website. Built using clean **HTML5** and custom **CSS**, it features a modern developer aesthetic complete with interactive elements, terminal-inspired design sections, and clear links to my technical work and professional profiles.
 
 ---
 
-## 🛠️ Built With
+##  Built With
 
 * **HTML5:** Semantic document structure and accessibility.
 * **CSS3:** Custom glassmorphism styling, flexbox/grid layouts, and responsive design.
@@ -20,7 +20,7 @@ This repository houses the source code for my personal portfolio website. Built 
 
 ---
 
-## 📂 Featured Projects Highlighted in Portfolio
+##  Featured Projects Highlighted in Portfolio
 
 * **EduTrack Analytics Hub:** Flask-based academic performance tracking and grade calculation application.
 * **FutureNet Consulting:** Modern responsive business website with custom CSS glassmorphism styling.
@@ -28,7 +28,7 @@ This repository houses the source code for my personal portfolio website. Built 
 
 ---
 
-## 📬 Connect & Contact
+##  Connect & Contact
 
 * **Portfolio:** [https://tshepo-letsoalo.github.io/Academic-Portfolio/](https://tshepo-letsoalo.github.io/Academic-Portfolio/)
 * **LinkedIn:** https://www.linkedin.com/in/tshepo-letsoalo-45bb67377
